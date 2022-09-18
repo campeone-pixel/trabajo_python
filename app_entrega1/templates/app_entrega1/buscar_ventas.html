@@ -1,0 +1,40 @@
+{% extends 'app_entrega1/bd.html' %}
+
+{% load static %}
+
+{% block titulo %}
+  
+  <h1>Buscar ventas </h1>
+{% endblock %}
+
+{% block formulario_agregar %}
+<h2>formulario de busqueda </h2>
+<form action="{% url 'buscar_ventas' %}" method="POST">{% csrf_token %}
+     
+   <input type="number" name="venta_id" id="venta_id">
+    <input type="submit" value="enviar">
+</form>
+{% endblock %}
+
+{% block columnas %}
+<tr>
+  <th><h2>venta_id</h2></th>
+  <th><h2>fecha_venta </h2></th>
+  <th><h2>cantidad_venta</h2></th>
+  <th><h2>usuario_id</h2></th>
+  
+</tr>
+{% endblock %}
+
+{% block tabla %}
+{% for venta in all_ventas %}
+<tr>
+   <td> {{ venta.venta_id }} </td>
+   <td> {{ venta.fecha_venta }} </td>
+   <td> {{ venta.cantidad_venta }} </td>
+   <td> {{ venta.usuario_id }} </td>
+   <td><button><a href="{% url 'eliminar_venta' venta.venta_id %}">Eliminar</a></button></td>
+   <td><button><a href="{% url 'actualizar_venta' venta.venta_id %}">Actualizar</a></button></td>
+</tr>
+{% endfor %}
+{% endblock %}

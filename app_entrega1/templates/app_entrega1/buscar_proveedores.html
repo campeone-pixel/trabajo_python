@@ -1,0 +1,39 @@
+{% extends 'app_entrega1/bd.html' %}
+
+{% load static %}
+{% block titulo %}
+  
+  <h1>Buscar proveedores </h1>
+{% endblock %}
+{% block formulario_agregar %}
+<h2>formulario de busqueda de productos</h2>
+<form action="{% url 'buscar_proveedores' %}" method="POST">{% csrf_token %}
+     
+   <input type="number" name="proveedor_id" id="proveedor_id">
+    <input type="submit" value="enviar">
+</form>
+{% endblock %}
+
+
+{% block columnas %}
+<tr>
+  <th><h2>proveedor_id</h2></th>
+  <th><h2>nombre_proveedor</h2></th>
+  <th><h2>direccion_proveedor</h2></th>
+  <th><h2>cuit</h2></th>
+  
+</tr>
+{% endblock %}
+
+{% block tabla %}
+{% for proveedor in all_proveedores %}
+<tr>
+   <td> {{ proveedor.proveedor_id }} </td>
+   <td> {{ proveedor.nombre_proveedor }} </td>
+   <td> {{ proveedor.direccion_proveedor }} </td>
+   <td> {{ proveedor.cuit }} </td>
+   <td><button><a href="{% url 'eliminar_proveedor' proveedor.proveedor_id %}">Eliminar</a></button></td>
+   <td><button><a href="{% url 'actualizar_proveedor' proveedor.proveedor_id %}">Actualizar</a></button></td>
+</tr>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'app_entrega1/bd.html' %}
+
+{% load static %}
+{% block titulo %}
+  
+  <h1>Guardar Ventas</h1>
+{% endblock %}
+{% block formulario_agregar %}
+<form action="{% url 'guardar_ventas' %}" method="POST">{% csrf_token %}
+    <table>
+      {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="enviar">
+</form>
+{% endblock %}
+
+{% block columnas %}
+<tr>
+  <th><h2>venta_id</h2></th>
+  <th><h2>fecha_venta </h2></th>
+  <th><h2>cantidad_venta</h2></th>
+  <th><h2>usuario_id</h2></th>
+  
+</tr>
+{% endblock %}
+
+{% block tabla %}
+{% for venta in all_ventas %}
+<tr>
+   <td> {{ venta.venta_id }} </td>
+   <td> {{ venta.fecha_venta }} </td>
+   <td> {{ venta.cantidad_venta }} </td>
+   <td> {{ venta.usuario_id }} </td>
+   
+</tr>
+{% endfor %}
+{% endblock %}

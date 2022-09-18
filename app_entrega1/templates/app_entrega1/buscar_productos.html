@@ -1,0 +1,39 @@
+{% extends 'app_entrega1/bd.html' %}
+
+{% load static %}
+{% block titulo %}
+
+<h1>Buscar productos </h1>
+{% endblock %}
+{% block formulario_agregar %}
+<h2>formulario de busqueda de productos</h2>
+<form action="{% url 'buscar_productos' %}" method="POST">{% csrf_token %}
+     
+   <input type="number" name="producto_id" id="producto_id">
+    <input type="submit" value="enviar">
+</form>
+{% endblock %}
+
+{% block columnas %}
+<tr>
+  <th><h2>Producto_id</h2></th>
+  <th><h2>Nombre Producto</h2></th>
+  <th><h2>Empresa</h2></th>
+  <th><h2>Tipo</h2></th>
+  <th><h2>Precio</h2></th>
+</tr>
+{% endblock %}
+
+{% block tabla %}
+{% for producto in all_productos %}
+<tr>
+   <td> {{ producto.producto_id }} </td>
+   <td> {{ producto.nombre_producto }} </td>
+   <td> {{ producto.empresa }} </td>
+   <td> {{ producto.tipo_producto }} </td>
+   <td> {{ producto.precio }} </td>
+   <td><button><a href="{% url 'eliminar_producto' producto.producto_id %}">Eliminar</a></button></td>
+   <td><button><a href="{% url 'actualizar_producto' producto.producto_id %}">Actualizar</a></button></td>
+</tr>
+{% endfor %}
+{% endblock %}
