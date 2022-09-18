@@ -5,11 +5,12 @@ from app_entrega1.forms import *
 from .models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
-
-def bd(request):
-  return render(request, 'app_entrega1/bd.html', )
+def inicio_bd(request):
+  all_productos=productos.objects.all()
+  return render(request, 'app_entrega1/inicio_bd.html', {'all_productos':all_productos})
 
 
 #------------------------guardar-datos---------------------------------------------------------------------------------------------

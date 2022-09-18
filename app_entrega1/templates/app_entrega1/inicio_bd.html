@@ -2,17 +2,13 @@
 
 {% load static %}
 {% block titulo %}
+  
+  <h1>Base de datos de Productos</h1>
+{% endblock %}
 
-<h1>Buscar productos </h1>
-{% endblock %}
 {% block formulario_agregar %}
-<h2>formulario de busqueda de productos</h2>
-<form action="{% url 'buscar_productos' %}" method="POST">{% csrf_token %}
-     
-   <input type="number" name="producto_id" id="producto_id">
-    <input type="submit" value="enviar">
-</form>
 {% endblock %}
+
 
 {% block columnas %}
 <tr>
@@ -21,7 +17,7 @@
   <th><h2>Empresa</h2></th>
   <th><h2>Tipo</h2></th>
   <th><h2>Precio</h2></th>
-</tr>
+  </tr>
 {% endblock %}
 
 {% block tabla %}
@@ -32,9 +28,7 @@
    <td> {{ producto.empresa }} </td>
    <td> {{ producto.tipo_producto }} </td>
    <td> {{ producto.precio }} </td>
-   {% if user is %}
-   <td><button><a href="{% url 'eliminar_producto' producto.producto_id %}">Eliminar</a></button></td>
-   <td><button><a href="{% url 'actualizar_producto' producto.producto_id %}">Actualizar</a></button></td>
+   
 </tr>
 {% endfor %}
 {% endblock %}

@@ -19,7 +19,10 @@ from .views import *
 
 
 urlpatterns = [
+    path('app_entrega1/',include('app_entrega1.urls')),
     path('admin/', admin.site.urls),
     path("",index,name='index'),
-    path('app_entrega1/',include('app_entrega1.urls'))
+    path('login_request/',login_request,name='login_request'),
+    path('register/',register,name='register')
+   
 ]

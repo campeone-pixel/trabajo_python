@@ -9,9 +9,9 @@
 {% endblock %}
 
 {% block section %}
-<form action="{% url 'login_request' %}" method="POST">
+<form action="{% url 'register' %}" method="POST">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{form.as_p}}
   <button type="submit">Registro</button>
 </form>
   {% endblock %}
